@@ -1,0 +1,9 @@
+{
+    "rules": {
+        "no-submodule-imports": [true],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
+        "object-literal-sort-keys": false,
+        "curly": [true, "ignore-same-line"]
+    },
+    "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"]
+}
