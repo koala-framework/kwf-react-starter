@@ -3,7 +3,9 @@
         "no-submodule-imports": [true],
         "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
         "object-literal-sort-keys": false,
-        "curly": [true, "ignore-same-line"]
+        "curly": [true, "ignore-same-line"],
+        "no-var-requires": false,
+        "no-empty-interface": false
     },
     "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"]
 }
