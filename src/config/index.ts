@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 type Environments = "production" | "test" | "dev";
-export const getConfig = (key: string) => {
+export const getConfig = <K extends keyof IDevConfig>(key: K): IDevConfig[K] => {
     const section: Environments = config[(window as any).__KWF_REACT_STARTER_ENV__] ? (window as any).__KWF_REACT_STARTER_ENV__ : "production";
     return config[section][key];
 };
