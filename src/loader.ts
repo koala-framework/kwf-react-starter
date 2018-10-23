@@ -5,7 +5,7 @@ const loadHtml = () => {
     if (!baseEl) return false;
 
     require("./app").render(baseEl, {
-        domain: getConfig("domain"),
+        domain: getConfig("exampleApi"),
     });
 };
 
