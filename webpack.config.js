@@ -1,12 +1,17 @@
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
+const fs = require("fs");
 
 module.exports = (env, argv) => {
     const prodBuild = argv.mode === "production";
     const publicPath = (prodBuild ? "/" : "http://0.0.0.0:8080/") + "assets/build/";
 
-    const plugins = [];
+    const plugins = [
+        new webpack.DefinePlugin({
+            CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "./src/config/dev.local.js")),
+        }),
+    ];
     if (prodBuild) {
         plugins.push(new UglifyJSPlugin());
         plugins.push(
@@ -35,7 +40,7 @@ module.exports = (env, argv) => {
 
     return {
         entry: {
-            app: ["./src/loader.js"],
+            app: ["./src/loader.ts"],
         },
         plugins: plugins,
         module: {
