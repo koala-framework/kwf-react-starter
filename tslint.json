@@ -6,7 +6,7 @@
         "curly": [true, "ignore-same-line"],
         "no-var-requires": false,
         "no-empty-interface": false,
-        "no-implicit-dependencies": [true, ["app"]]
+        "no-implicit-dependencies": [true, "dev", ["app"]]
     },
     "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"]
 }
