@@ -1,3 +1,5 @@
+const createStyledComponentsTransformer = require("typescript-plugin-styled-components").default;
+const styledComponentsTransformer = createStyledComponentsTransformer();
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
@@ -44,6 +46,9 @@ module.exports = (env, argv) => {
                     test: /\.tsx?$/,
                     exclude: /node_modules|vendor/,
                     loader: "ts-loader",
+                    options: {
+                        getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
+                    },
                 },
                 {
                     test: /\.css?$/,
