@@ -8,13 +8,19 @@ import { compose } from "recompose";
 import { withTheme } from "styled-components";
 
 export interface IComponentProps extends IWithTheme {
-    domain: string;
+    exampleReducer: string;
 }
 
-const Master: React.SFC<IComponentProps> = ({ domain }) => <Wrapper>Domain: {domain}</Wrapper>;
+const Master: React.SFC<IComponentProps> = ({ exampleReducer }) => (
+    <Wrapper>
+        Example reducer: {exampleReducer}
+        <br />
+        Example config: {getConfig("exampleApi")}
+    </Wrapper>
+);
 
-const mapStateToProps = ({ domain }: IApplicationState) => ({
-    domain,
+const mapStateToProps = ({ exampleReducer }: IApplicationState) => ({
+    exampleReducer,
 });
 
 const enhance = compose<IComponentProps, {}>(

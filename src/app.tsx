@@ -8,13 +8,13 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
-export interface IInitialConfig {
-    domain: string;
+export interface IConfig {
+    exampleSetting: string;
 }
 
-export const render = (domElement: HTMLElement, config: IInitialConfig) => {
+export const render = (domElement: HTMLElement, config: IConfig) => {
     const data: IApplicationState = {
-        domain: config.domain,
+        exampleReducer: config.exampleSetting,
     };
 
     const store = configureStore(data, config);

@@ -1,10 +1,10 @@
-import { IInitialConfig } from "app/app";
+import { IConfig } from "app/app";
 import Actions from "app/store/rootActions";
 import { IApplicationState } from "app/store/rootReducer";
 import { Action } from "redux";
 import thunk, { ThunkAction, ThunkDispatch, ThunkMiddleware } from "redux-thunk";
 
-export default (config: IInitialConfig) => {
+export default (config: IConfig) => {
     const middlewares = [];
 
     // Thunk
