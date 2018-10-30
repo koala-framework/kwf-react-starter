@@ -1,7 +1,9 @@
+import dev from "./dev";
 import { IConfig } from "./index";
 
 const config: IConfig = {
-    exampleApi: "https://www.example.com",
+    ...dev,
+    exampleApi: "http://devlocal.example.com",
 };
 
 export default config;

@@ -1,9 +1,16 @@
-import { IConfig as ITestConfig } from "./test";
+import { IConfig } from "./index";
+import test from "./test";
 
-export interface IConfig extends ITestConfig {}
+declare const CONFIG_DEV_LOCAL_EXISTS: boolean;
 
-const config: IConfig = {
+let config: IConfig = {
+    ...test,
     exampleApi: "http://dev.example.com",
 };
+
+if (process.env.NODE_ENV !== "production") {
+    const devLocal: IConfig = CONFIG_DEV_LOCAL_EXISTS ? require("./dev.local").default : {};
+    config = { ...config, ...devLocal };
+}
 
 export default config;

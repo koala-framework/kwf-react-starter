@@ -1,8 +1,8 @@
-import { IConfig as IProductionConfig } from "./production";
-
-export interface IConfig extends IProductionConfig {}
+import { IConfig } from "./index";
+import production from "./production";
 
 const config: IConfig = {
+    ...production,
     exampleApi: "http://test.example.com",
 };
 
