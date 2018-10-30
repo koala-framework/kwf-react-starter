@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
 
     const plugins = [
         new webpack.DefinePlugin({
-            CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "./src/config/dev.local.js")),
+            CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "./src/config/dev.local.ts")),
         }),
     ];
     if (prodBuild) {
