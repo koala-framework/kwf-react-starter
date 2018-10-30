@@ -1,5 +1,5 @@
-import production from "./production";
-import test from "./test";
+import production from "app/config/production";
+import test from "app/config/test";
 
 export interface IConfig {
     exampleApi: string;
@@ -17,7 +17,7 @@ const config: IConfigSections = {
 };
 
 if (process.env.NODE_ENV !== "production") {
-    const dev = require("./dev").default;
+    const dev = require("app/config/dev").default;
     config.dev = { ...dev };
 }
 

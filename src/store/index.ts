@@ -1,7 +1,7 @@
+import { IInitialConfig } from "app/app";
+import createMiddelwares from "app/store/middlewares";
+import rootReducer, { IApplicationState } from "app/store/rootReducer";
 import { applyMiddleware, compose, createStore } from "redux";
-import { IInitialConfig } from "../app";
-import createMiddelwares from "./middlewares";
-import rootReducer, { IApplicationState } from "./rootReducer";
 
 export type IGetState = () => IApplicationState;
 

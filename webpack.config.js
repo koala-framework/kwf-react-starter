@@ -56,6 +56,9 @@ module.exports = (env, argv) => {
             descriptionFiles: ["package.json"],
             mainFields: ["browser", "module", "main"],
             extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+            alias: {
+                app: path.resolve(__dirname, "src/"),
+            },
         },
         output: {
             path: path.resolve(__dirname, "../build/assets"),

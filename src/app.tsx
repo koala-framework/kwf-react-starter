@@ -1,12 +1,12 @@
+import Master from "app/components/Master";
+import "app/globals";
+import configureStore from "app/store";
+import { IApplicationState } from "app/store/rootReducer";
+import { theme } from "app/theme";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import Master from "./components/Master";
-import "./globals";
-import configureStore from "./store";
-import { IApplicationState } from "./store/rootReducer";
-import { theme } from "./theme";
 
 export interface IInitialConfig {
     domain: string;

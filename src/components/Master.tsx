@@ -1,10 +1,11 @@
+import { Wrapper } from "app/components/Master.sc";
+import { getConfig } from "app/config";
+import { IApplicationState } from "app/store/rootReducer";
+import { IWithTheme } from "app/theme";
 import * as React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { withTheme } from "styled-components";
-import { IApplicationState } from "../store/rootReducer";
-import { IWithTheme } from "../theme";
-import { Wrapper } from "./Master.sc";
 
 export interface IComponentProps extends IWithTheme {
     domain: string;
