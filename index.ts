@@ -1,10 +1,9 @@
-import "app/globals";
+import * as app from "./src/app";
 
-const loadHtml = async () => {
+const loadHtml = () => {
     const baseEl: HTMLElement = document.querySelector("kwf-react-starter");
     if (!baseEl) return false;
 
-    const app = await import("./app");
     app.render(baseEl, {
         exampleSetting: "foobar",
     });

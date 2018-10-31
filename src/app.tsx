@@ -1,4 +1,5 @@
 import Master from "app/components/Master";
+import "app/globals";
 import configureStore from "app/store";
 import { IApplicationState } from "app/store/rootReducer";
 import { theme } from "app/theme";

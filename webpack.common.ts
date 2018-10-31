@@ -7,7 +7,7 @@ import * as parts from "./webpack.parts";
 const config: webpack.Configuration = merge(
     {
         entry: {
-            app: ["./src/loader.ts"],
+            app: ["./index.ts"],
         },
         plugins: [
             new webpack.DefinePlugin({
