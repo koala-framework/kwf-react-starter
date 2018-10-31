@@ -23,21 +23,6 @@ module.exports = (env, argv) => {
         );
     }
 
-    const babelOptions = {
-        presets: [
-            [
-                "env",
-                {
-                    useBuiltIns: true,
-                    targets: {
-                        browsers: [">0.4% in alt-EU"],
-                    },
-                },
-            ],
-            "react",
-        ],
-    };
-
     return {
         entry: {
             app: ["./src/loader.ts"],
@@ -56,23 +41,9 @@ module.exports = (env, argv) => {
                     },
                 },
                 {
-                    test: /\.(jsx?)$/,
-                    exclude: /node_modules|vendor/,
-                    loader: "babel-loader",
-                    options: babelOptions,
-                },
-                {
                     test: /\.tsx?$/,
                     exclude: /node_modules|vendor/,
-                    use: [
-                        {
-                            loader: "babel-loader",
-                            options: babelOptions,
-                        },
-                        {
-                            loader: "ts-loader",
-                        },
-                    ],
+                    loader: "ts-loader",
                 },
                 {
                     test: /\.css?$/,
