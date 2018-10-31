@@ -1,23 +1,9 @@
 export interface IColors {
-    main: string;
-    sec: string;
-    highlightedText: string;
-    contentBg: string;
-    typo: string;
-    dark: string;
-    light: string;
-    lightGrey: string;
-    errorBg: string;
-    errorBorder: string;
-    errorText: string;
-    successBg: string;
-    successBorder: string;
-    successText: string;
+    example: string;
 }
 
 export interface IBreakpoints {
-    md: string;
-    lg: string;
+    example: string;
 }
 
 export interface ITheme {
@@ -31,24 +17,10 @@ export interface IWithTheme {
 
 export const theme: ITheme = {
     colors: {
-        main: "#314659",
-        sec: "#1E3040",
-        highlightedText: "#c90000",
-        contentBg: "#f4f4f4",
-        typo: "#414742",
-        dark: "#000",
-        light: "#fff",
-        lightGrey: "#707070",
-        errorBg: "#d11313",
-        errorBorder: "#bb1d1d",
-        errorText: "#fff",
-        successBg: "#7db800",
-        successBorder: "#1e7638",
-        successText: "#fff",
+        example: "#314659",
     },
     breakpoints: {
-        md: "(min-width: 768px)",
-        lg: "(min-width: 1024px)",
+        example: "(min-width: 1024px)",
     },
 };
 
