@@ -1,5 +1,5 @@
-import { IConfig } from "./index";
-import production from "./production";
+import { IConfig } from "app/config/index";
+import production from "app/config/production";
 
 const config: IConfig = {
     ...production,

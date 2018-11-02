@@ -1,4 +1,3 @@
-import styled from "styled-components";
-import { IWithTheme } from "../theme";
+import styled from "app/styled-components";
 
-export const Wrapper = styled.div<IWithTheme>``;
+export const Wrapper = styled.div``;

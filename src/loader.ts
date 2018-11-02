@@ -1,4 +1,4 @@
-import { getConfig } from "./config";
+import "app/globals";
 
 const loadHtml = async () => {
     const baseEl: HTMLElement = document.querySelector("kwf-react-starter");
@@ -6,7 +6,7 @@ const loadHtml = async () => {
 
     const app = await import("./app");
     app.render(baseEl, {
-        domain: getConfig("exampleApi"),
+        exampleSetting: "foobar",
     });
 };
 

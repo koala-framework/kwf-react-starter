@@ -1,5 +1,5 @@
-import dev from "./dev";
-import { IConfig } from "./index";
+import dev from "app/config/dev";
+import { IConfig } from "app/config/index";
 
 const config: IConfig = {
     ...dev,

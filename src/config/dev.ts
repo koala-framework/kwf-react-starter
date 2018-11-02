@@ -1,5 +1,5 @@
-import { IConfig } from "./index";
-import test from "./test";
+import { IConfig } from "app/config/index";
+import test from "app/config/test";
 
 declare const CONFIG_DEV_LOCAL_EXISTS: boolean;
 
@@ -9,7 +9,7 @@ let config: IConfig = {
 };
 
 if (process.env.NODE_ENV !== "production") {
-    const devLocal: IConfig = CONFIG_DEV_LOCAL_EXISTS ? require("./dev.local").default : {};
+    const devLocal: IConfig = CONFIG_DEV_LOCAL_EXISTS ? require("app/config/dev.local").default : {};
     config = { ...config, ...devLocal };
 }
 

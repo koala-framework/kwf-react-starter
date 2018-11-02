@@ -1,11 +1,11 @@
+import { IConfig } from "app/app";
+import createMiddelwares from "app/store/middlewares";
+import rootReducer, { IApplicationState } from "app/store/rootReducer";
 import { applyMiddleware, compose, createStore } from "redux";
-import { IInitialConfig } from "../app";
-import createMiddelwares from "./middlewares";
-import rootReducer, { IApplicationState } from "./rootReducer";
 
 export type IGetState = () => IApplicationState;
 
-export default (initialState: IApplicationState, config: IInitialConfig) => {
+export default (initialState: IApplicationState, config: IConfig) => {
     let composeEnhancers;
     composeEnhancers = process.env.NODE_ENV !== "production" ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose;
 

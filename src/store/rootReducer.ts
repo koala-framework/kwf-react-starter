@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
 export interface IApplicationState {
-    readonly domain: string;
+    readonly exampleReducer: string;
 }
 
 export default combineReducers<IApplicationState>({
-    domain: (state: string = '') => state,
+    exampleReducer: (state: string = "") => state,
 });
