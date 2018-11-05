@@ -1,35 +1,42 @@
-const createStyledComponentsTransformer = require("typescript-plugin-styled-components").default;
-const styledComponentsTransformer = createStyledComponentsTransformer();
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
-const webpack = require("webpack");
-const path = require("path");
-const fs = require("fs");
+import * as fs from "fs";
+import * as path from "path";
+import createStyledComponentsTransformer from "typescript-plugin-styled-components";
+import * as UglifyJSPlugin from "uglifyjs-webpack-plugin";
+import * as webpack from "webpack";
 
-module.exports = (env, argv) => {
-    const prodBuild = argv.mode === "production";
-    const publicPath = (prodBuild ? "/" : "http://0.0.0.0:8080/") + "assets/build/";
+const styledComponentsTransformer = createStyledComponentsTransformer();
+
+interface IEnvironment {
+    production: boolean;
+}
+
+const config = ({ production }: IEnvironment): webpack.Configuration => {
+    const publicPath = "/assets/build/";
 
     const plugins = [
         new webpack.DefinePlugin({
-            CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "./src/config/dev.local.ts")),
+            CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "src/config/dev.local.ts")),
         }),
     ];
-    if (prodBuild) {
-        plugins.push(new UglifyJSPlugin());
+    let tsLoaderOptions = {};
+    if (production) {
+        tsLoaderOptions = {
+            ...tsLoaderOptions,
+            getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
+        };
         plugins.push(
             new webpack.DefinePlugin({
-                "process.env": {
-                    NODE_ENV: JSON.stringify("production"),
-                },
+                "process.env.NODE_ENV": JSON.stringify("production"),
             }),
+            new UglifyJSPlugin(),
         );
     }
 
     return {
+        mode: production ? "production" : "development",
         entry: {
-            app: ["./src/loader.ts"],
+            "kwf-react-starter": ["./index.ts"],
         },
-        plugins: plugins,
         module: {
             rules: [
                 {
@@ -46,9 +53,7 @@ module.exports = (env, argv) => {
                     test: /\.tsx?$/,
                     exclude: /node_modules|vendor/,
                     loader: "ts-loader",
-                    options: {
-                        getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
-                    },
+                    options: tsLoaderOptions,
                 },
                 {
                     test: /\.css?$/,
@@ -56,6 +61,7 @@ module.exports = (env, argv) => {
                 },
             ],
         },
+        plugins,
         resolve: {
             modules: ["node_modules"],
             descriptionFiles: ["package.json"],
@@ -69,13 +75,15 @@ module.exports = (env, argv) => {
             path: path.resolve(__dirname, "../build/assets"),
             filename: "[name].js",
             chunkFilename: "[id].chunk.js?v=[chunkhash]",
-            publicPath: publicPath,
-            pathinfo: !prodBuild,
+            publicPath,
         },
         devServer: {
             host: "0.0.0.0",
             port: 8080,
-            contentBase: "./dist",
+            contentBase: path.join(__dirname, "public"),
+            historyApiFallback: true,
         },
     };
 };
+
+export default config;
