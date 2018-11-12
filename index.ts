@@ -6,7 +6,7 @@ const loadHtml = () => {
     let domain = null;
     const scripts = document.getElementsByTagName("script");
     [].every.call(scripts, (script: HTMLScriptElement) => {
-        const m = script.src.match(/^(.*)?\/assets\/build\/kwf-react-starter/);
+        const m = script.src.match(/^(.*)?\/assets\/build\/app/);
         if (m) {
             domain = m[1];
             return false;
@@ -16,7 +16,7 @@ const loadHtml = () => {
     if (domain === null) return false;
     __webpack_public_path__ = domain + __webpack_public_path__;
 
-    const baseEl: HTMLElement = document.querySelector("kwf-react-starter");
+    const baseEl: HTMLElement = document.querySelector("app");
     if (!baseEl) return false;
 
     app.render(baseEl, {
