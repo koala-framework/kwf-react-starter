@@ -3,6 +3,7 @@ import * as path from "path";
 import createStyledComponentsTransformer from "typescript-plugin-styled-components";
 import * as UglifyJSPlugin from "uglifyjs-webpack-plugin";
 import * as webpack from "webpack";
+import * as ManifestPlugin from "webpack-manifest-plugin";
 
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
@@ -29,6 +30,11 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                 "process.env.NODE_ENV": JSON.stringify("production"),
             }),
             new UglifyJSPlugin(),
+        );
+        plugins.push(
+            new ManifestPlugin({
+                fileName: "asset-manifest.json",
+            }),
         );
     }
 
@@ -73,7 +79,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
         },
         output: {
             path: path.resolve(__dirname, "../build/assets"),
-            filename: "[name].js",
+            filename: "[name].js?v=[chunkhash:8]",
             chunkFilename: "[id].chunk.js?v=[chunkhash]",
             publicPath,
         },
