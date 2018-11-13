@@ -8,6 +8,7 @@ const { rm } = require("shelljs");
 
 const rmDirs = [".git", "tools"];
 const rmFiles = ["README.md"];
+const rmPackages = ["colors", "prompt", "replace-in-file", "shelljs"];
 const modifyFiles = ["package.json", "index.ts", "public/index.html", "src/config/index.ts"];
 
 _prompt.start();
@@ -98,6 +99,9 @@ const finalize = () => {
     const jsonPackage = path.resolve(__dirname, "..", "package.json");
     const pkg = JSON.parse(readFileSync(jsonPackage) as any);
     delete pkg.scripts.postinstall;
+    rmPackages.forEach(rmPackage => {
+        delete pkg.devDependencies[rmPackage];
+    });
     writeFileSync(jsonPackage, JSON.stringify(pkg, null, 4));
 
     console.log(colors.green("Postinstall script has been removed"));
