@@ -6,7 +6,7 @@ const loadHtml = () => {
     let domain = null;
     const scripts = document.getElementsByTagName("script");
     [].every.call(scripts, (script: HTMLScriptElement) => {
-        const m = script.src.match(/^(.*)?\/assets\/build\/kwf-react-starter/);
+        const m = script.src.match(/^(.*)?\/assets\/build\/kwf-react-starter\/kwf-react-starter/);
         if (m) {
             domain = m[1];
             return false;

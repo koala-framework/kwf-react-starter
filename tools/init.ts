@@ -9,7 +9,7 @@ const { rm } = require("shelljs");
 const rmDirs = [".git", "tools"];
 const rmFiles = ["README.md"];
 const rmPackages = ["colors", "prompt", "replace-in-file", "shelljs"];
-const modifyFiles = ["package.json", "index.ts", "public/index.html", "src/config/index.ts"];
+const modifyFiles = ["package.json", "index.ts", "public/index.html", "src/config/index.ts", "bin/copy-build-to-kwf.ts"];
 
 _prompt.start();
 _prompt.message = "";

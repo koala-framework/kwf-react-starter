@@ -11,7 +11,7 @@ interface IEnvironment {
 }
 
 const config = ({ production }: IEnvironment): webpack.Configuration => {
-    const publicPath = "/assets/build/";
+    const publicPath = "/assets/build/kwf-react-starter/";
 
     const plugins = [
         new webpack.DefinePlugin({
@@ -72,7 +72,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             },
         },
         output: {
-            path: path.resolve(__dirname, "../build/assets"),
+            path: path.resolve(__dirname, "assets/build/kwf-react-starter"),
             filename: "[name].js",
             chunkFilename: "[id].chunk.js?v=[chunkhash]",
             publicPath,
