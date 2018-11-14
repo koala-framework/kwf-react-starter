@@ -44,8 +44,8 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                     test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
                     loader: "file-loader",
                     options: {
-                        publicPath: publicPath + "images/",
-                        outputPath: "images/",
+                        publicPath: publicPath + "files/",
+                        outputPath: "files/",
                         name: "[name].[ext]",
                     },
                 },
