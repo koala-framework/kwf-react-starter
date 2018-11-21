@@ -18,12 +18,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "src/config/dev.local.ts")),
         }),
     ];
-    let tsLoaderOptions = {};
     if (production) {
-        tsLoaderOptions = {
-            ...tsLoaderOptions,
-            getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
-        };
         plugins.push(
             new webpack.DefinePlugin({
                 "process.env.NODE_ENV": JSON.stringify("production"),
@@ -53,7 +48,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                     test: /\.tsx?$/,
                     exclude: /node_modules|vendor/,
                     loader: "ts-loader",
-                    options: tsLoaderOptions,
+                    options: production ? {} : { getCustomTransformers: () => ({ before: [styledComponentsTransformer] }) },
                 },
                 {
                     test: /\.css?$/,
