@@ -40,7 +40,8 @@
     },
     "scripts": {
         "start": "webpack-dev-server --open --config ./webpack.config.ts --env.production=0",
-        "build": "webpack --config ./webpack.config.ts --env.production=1"
+        "build:prod": "webpack --config ./webpack.config.ts --env.production=1",
+        "build:dev": "webpack --config ./webpack.config.ts --env.production=0"
     },
     "author": "Alexander Kaufmann <ak@vivid-planet.com>",
     "license": "ISC"
