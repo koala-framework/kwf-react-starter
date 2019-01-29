@@ -16,7 +16,7 @@ const loadHtml = () => {
     if (domain === null) return false;
     __webpack_public_path__ = domain + __webpack_public_path__;
 
-    const baseEl: HTMLElement = document.querySelector("kwf-react-starter");
+    const baseEl = document.querySelector<HTMLElement>("kwf-react-starter");
     if (!baseEl) return false;
 
     app.render(baseEl, {

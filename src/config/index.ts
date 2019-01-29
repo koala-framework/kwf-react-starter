@@ -26,5 +26,7 @@ export const getConfig = <K extends keyof IConfig>(key: K): IConfig[K] => {
     const section: Environments = config[(window as any).__KWF_REACT_STARTER_ENV__ as Environments]
         ? (window as any).__KWF_REACT_STARTER_ENV__
         : "production";
-    return config[section][key];
+    const c = config[section];
+    if (!c) throw new Error("Unknown config section");
+    return c[key];
 };
