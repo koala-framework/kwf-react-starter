@@ -2,11 +2,11 @@ import Master from "app/components/Master";
 import "app/globals";
 import configureStore from "app/store";
 import { IApplicationState } from "app/store/rootReducer";
+import { ThemeProvider } from "app/styled-components";
 import { theme } from "app/theme";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { ThemeProvider } from "styled-components";
 
 export interface IConfig {
     exampleSetting: string;
