@@ -25,9 +25,9 @@ export const theme: ITheme = {
 };
 
 export const getColor = (color: keyof IColors): ((props: IWithTheme) => string) => {
-    return ({ theme: { colors } }) => colors[color];
+    return ({ theme: t }) => t!.colors[color];
 };
 
 export const getBreakpoint = (breakpoint: keyof IBreakpoints): ((props: IWithTheme) => string) => {
-    return ({ theme: { breakpoints } }) => breakpoints[breakpoint];
+    return ({ theme: t }) => t!.breakpoints[breakpoint];
 };
