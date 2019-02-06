@@ -1,7 +1,3 @@
-import * as app from "./src/app";
-
-declare let __webpack_public_path__: string;
-
 const loadHtml = () => {
     let domain = null;
     const scripts = document.getElementsByTagName("script");
@@ -19,8 +15,10 @@ const loadHtml = () => {
     const baseEl = document.querySelector<HTMLElement>("kwf-react-starter");
     if (!baseEl) return false;
 
-    app.render(baseEl, {
-        exampleSetting: "foobar",
+    import("./src/app").then(({ render }) => {
+        render(baseEl, {
+            exampleSetting: "foobar",
+        });
     });
 };
 
