@@ -1,3 +1,4 @@
+import * as ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import * as fs from "fs";
 import * as path from "path";
 import createStyledComponentsTransformer from "typescript-plugin-styled-components";
@@ -12,10 +13,16 @@ interface IEnvironment {
 
 const config = ({ production }: IEnvironment): webpack.Configuration => {
     const publicPath = "/build/";
+    const tsLoaderOptions: any = {
+        transpileOnly: true,
+    };
 
     const plugins = [
         new webpack.DefinePlugin({
             CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "src/config/dev.local.ts")),
+        }),
+        new ForkTsCheckerWebpackPlugin({
+            tslint: true,
         }),
     ];
     if (production) {
@@ -25,6 +32,8 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             }),
             new UglifyJSPlugin(),
         );
+    } else {
+        tsLoaderOptions.getCustomTransformers = () => ({ before: [styledComponentsTransformer] });
     }
 
     return {
@@ -47,7 +56,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                     test: /\.tsx?$/,
                     exclude: /node_modules|vendor/,
                     loader: "ts-loader",
-                    options: production ? {} : { getCustomTransformers: () => ({ before: [styledComponentsTransformer] }) },
+                    options: tsLoaderOptions,
                 },
                 {
                     test: /\.css?$/,
