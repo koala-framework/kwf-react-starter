@@ -11,7 +11,7 @@ interface IEnvironment {
 }
 
 const config = ({ production }: IEnvironment): webpack.Configuration => {
-    const publicPath = "/assets/build/";
+    const publicPath = "/build/";
 
     const plugins = [
         new webpack.DefinePlugin({
@@ -39,8 +39,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                     test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
                     loader: "file-loader",
                     options: {
-                        publicPath: publicPath + "images/",
-                        outputPath: "images/",
+                        outputPath: "files/",
                         name: "[name].[ext]",
                     },
                 },
@@ -67,7 +66,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             },
         },
         output: {
-            path: path.resolve(__dirname, "../build/assets"),
+            path: path.resolve(__dirname, "build"),
             filename: "[name].js",
             chunkFilename: "[id].chunk.js?v=[chunkhash]",
             publicPath,
