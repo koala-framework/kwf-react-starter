@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "es6-promise": "^4.2.5",
         "es6-shim": "^0.35.4",
         "es7-shim": "^6.0.0",
         "react": "^16.7.0",
