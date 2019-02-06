@@ -76,6 +76,9 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             port: 8080,
             contentBase: path.join(__dirname, "public"),
             historyApiFallback: true,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+            },
         },
     };
 };
