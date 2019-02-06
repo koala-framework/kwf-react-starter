@@ -39,7 +39,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
     return {
         mode: production ? "production" : "development",
         entry: {
-            "kwf-react-starter": ["./src/polyfills.ts", "./index.ts"],
+            "kwf-react-starter": ["./src/polyfills.ts", "./src/pre-loader.ts", "./src/loader.ts"],
         },
         module: {
             rules: [
