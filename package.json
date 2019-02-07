@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "es6-promise": "^4.2.5",
         "es6-shim": "^0.35.4",
         "es7-shim": "^6.0.0",
         "react": "^16.7.0",
@@ -27,6 +26,7 @@
         "@types/webpack-env": "^1.13.7",
         "css-loader": "^2.1.0",
         "file-loader": "^3.0.1",
+        "fork-ts-checker-webpack-plugin": "^0.5.2",
         "prettier": "^1.16.4",
         "style-loader": "^0.23.1",
         "ts-loader": "^5.3.3",
@@ -43,7 +43,7 @@
     },
     "scripts": {
         "start": "webpack-dev-server --open --config ./webpack.config.ts --env.production=0",
-        "build": "webpack --config ./webpack.config.ts --env.production=1",
+        "build": "webpack --config ./webpack.config.ts --env.production=1 --progress",
         "types": "tsc --noEmit",
         "lint": "tslint --project ."
     }

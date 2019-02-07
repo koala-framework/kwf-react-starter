@@ -1,3 +1,4 @@
+import * as ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import * as fs from "fs";
 import * as path from "path";
 import createStyledComponentsTransformer from "typescript-plugin-styled-components";
@@ -11,11 +12,17 @@ interface IEnvironment {
 }
 
 const config = ({ production }: IEnvironment): webpack.Configuration => {
-    const publicPath = "/assets/build/";
+    const publicPath = "/build/";
+    const tsLoaderOptions: any = {
+        transpileOnly: true,
+    };
 
     const plugins = [
         new webpack.DefinePlugin({
             CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "src/config/dev.local.ts")),
+        }),
+        new ForkTsCheckerWebpackPlugin({
+            tslint: true,
         }),
     ];
     if (production) {
@@ -25,12 +32,14 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             }),
             new UglifyJSPlugin(),
         );
+    } else {
+        tsLoaderOptions.getCustomTransformers = () => ({ before: [styledComponentsTransformer] });
     }
 
     return {
         mode: production ? "production" : "development",
         entry: {
-            "kwf-react-starter": ["./index.ts"],
+            "kwf-react-starter": ["./src/polyfills.ts", "./src/pre-loader.ts", "./src/loader.ts"],
         },
         module: {
             rules: [
@@ -39,8 +48,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                     test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
                     loader: "file-loader",
                     options: {
-                        publicPath: publicPath + "images/",
-                        outputPath: "images/",
+                        outputPath: "files/",
                         name: "[name].[ext]",
                     },
                 },
@@ -48,7 +56,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                     test: /\.tsx?$/,
                     exclude: /node_modules|vendor/,
                     loader: "ts-loader",
-                    options: production ? {} : { getCustomTransformers: () => ({ before: [styledComponentsTransformer] }) },
+                    options: tsLoaderOptions,
                 },
                 {
                     test: /\.css?$/,
@@ -67,7 +75,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             },
         },
         output: {
-            path: path.resolve(__dirname, "../build/assets"),
+            path: path.resolve(__dirname, "build"),
             filename: "[name].js",
             chunkFilename: "[id].chunk.js?v=[chunkhash]",
             publicPath,
@@ -77,6 +85,9 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             port: 8080,
             contentBase: path.join(__dirname, "public"),
             historyApiFallback: true,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+            },
         },
     };
 };
