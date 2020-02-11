@@ -1,8 +1,8 @@
 import Master from "app/components/Master";
-import { ThemeProvider } from "app/styled-components";
 import { theme } from "app/theme";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { ThemeProvider } from "styled-components";
 
 export interface IConfig {
     exampleSetting: string;

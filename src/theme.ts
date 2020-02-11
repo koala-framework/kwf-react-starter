@@ -1,3 +1,5 @@
+import { DefaultTheme } from "styled-components";
+
 export interface IColors {
     example: string;
 }
@@ -6,16 +8,11 @@ export interface IBreakpoints {
     example: string;
 }
 
-export interface ITheme {
-    colors: IColors;
-    breakpoints: IBreakpoints;
-}
-
 export interface IWithTheme {
-    theme?: ITheme;
+    theme?: DefaultTheme;
 }
 
-export const theme: ITheme = {
+export const theme: DefaultTheme = {
     colors: {
         example: "#314659",
     },
