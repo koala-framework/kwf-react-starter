@@ -5,6 +5,7 @@
         "moduleResolution": "node",
         "target": "esnext",
         "jsx": "react",
+        "module": "commonjs",
         "noEmit": true,
         "skipLibCheck": true,
         "baseUrl": "./",
