@@ -1,9 +1,4 @@
-export enum ThemeName {
-    Blue = "Blue",
-}
-
 export interface ITheme {
-    name: ThemeName;
     fonts: {
         roboto: string;
     };

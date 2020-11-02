@@ -1,7 +1,6 @@
-import { ITheme, ThemeName } from "./types";
+import { ITheme } from "./types";
 
 const theme: ITheme = {
-    name: ThemeName.Blue,
     fonts: {
         roboto: "Roboto, sans-serif",
     },
