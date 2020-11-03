@@ -1,10 +1,6 @@
-import { IBreakpoints, IColors } from "app/theme";
 import 'styled-components'
+import { ITheme } from "./theme/types";
 
 declare module 'styled-components' {
-    // tslint:disable-next-line:interface-name
-    export interface DefaultTheme {
-        colors: IColors;
-        breakpoints: IBreakpoints;
-    }
+    export interface DefaultTheme extends ITheme {}
 }
