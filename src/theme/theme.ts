@@ -29,6 +29,6 @@ const theme: ITheme = {
             mediaquery: "@media all and (min-width: 1440px)",
             value: 1440,
         },
-    }
+    },
 };
 export default theme;

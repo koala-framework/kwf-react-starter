@@ -8,6 +8,7 @@
         "noEmit": true,
         "skipLibCheck": true,
         "baseUrl": "./",
+        "esModuleInterop": true,
         "paths": {
             "app/*": ["src/*"]
         }
