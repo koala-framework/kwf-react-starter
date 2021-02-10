@@ -1,27 +1,29 @@
-import * as ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import * as fs from "fs";
 import * as path from "path";
 import * as webpack from "webpack";
 
-interface IEnvironment {
-    production: boolean;
-}
-
-const config = ({ production }: IEnvironment): webpack.Configuration => {
+const config = (): webpack.Configuration => {
+    const production = process.env.NODE_ENV === "production";
     const publicPath = "/build/";
 
-    const plugins = [
+    const plugins: webpack.WebpackPluginInstance[] = [
         new webpack.DefinePlugin({
             CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "src/config/dev.local.ts")),
-        }),
-        new ForkTsCheckerWebpackPlugin({
-            tslint: true,
         }),
     ];
     if (production) {
         plugins.push(
             new webpack.DefinePlugin({
                 "process.env.NODE_ENV": JSON.stringify("production"),
+            }),
+        );
+    } else {
+        plugins.push(
+            new ForkTsCheckerWebpackPlugin({
+                eslint: {
+                    files: "./src/**/*.{ts,tsx,js,jsx,json,css,scss,md}",
+                },
             }),
         );
     }
@@ -100,13 +102,20 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             path: path.resolve(__dirname, "build"),
             filename: "[name].js",
             chunkFilename: "[id].chunk.js?v=[chunkhash]",
-            publicPath,
+        },
+        cache: {
+            type: "filesystem",
+            buildDependencies: {
+                config: [__filename], // you may omit this when your CLI automatically adds it
+            },
         },
         devServer: {
             host: "0.0.0.0",
             port: 8080,
             contentBase: path.join(__dirname, "public"),
+            publicPath,
             historyApiFallback: true,
+            compress: true,
             headers: {
                 "Access-Control-Allow-Origin": "*",
             },
