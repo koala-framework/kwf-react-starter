@@ -109,6 +109,7 @@ const config = (): webpack.Configuration => {
                 config: [__filename], // you may omit this when your CLI automatically adds it
             },
         },
+        target: "web", // Fixes HMR: https://github.com/webpack/webpack-dev-server/issues/2758
         devServer: {
             host: "0.0.0.0",
             port: 8080,
